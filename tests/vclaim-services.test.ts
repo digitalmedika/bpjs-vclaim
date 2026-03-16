@@ -295,6 +295,17 @@ describe('Referensi', () => {
       method: 'GET'
     });
   });
+
+  it('mengambil referensi spesialis', async () => {
+    const fetcher = createMockFetcher();
+    const api = new Referensi(fetcher);
+
+    await expectSend(fetcher, api.klaimSpesialistik(), {
+      name: 'Referensi -> Spesialistik (Pengajuan Klaim)',
+      path: '/referensi/spesialistik',
+      method: 'GET'
+    });
+  });
 });
 
 describe('RencanaKontrol', () => {

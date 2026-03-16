@@ -29,9 +29,9 @@ JKN_VCLAIM_USER_KEY=
 ## Contoh penggunaan
 
 ```ts
-import { createVClaimClient } from './index.js';
+import { VClaimClient } from './index.js';
 
-const vclaim = createVClaimClient({
+const vclaim = new VClaimClient({
   consId: process.env.JKN_CONS_ID ?? '',
   consSecret: process.env.JKN_CONS_SECRET ?? '',
   vclaimUserKey: process.env.JKN_VCLAIM_USER_KEY ?? '',
@@ -52,7 +52,7 @@ console.log(res.metaData, res.response);
 Akses semua service lewat instance client:
 
 ```ts
-const vclaim = createVClaimClient();
+const vclaim = new VClaimClient();
 
 vclaim.lpk
 vclaim.monitoring
