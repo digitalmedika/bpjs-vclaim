@@ -1,22 +1,22 @@
 # bpjs-vclaim
 
-Wrapper VClaim BPJS (standalone, tanpa `@ssecd/jkn`).
+Wrapper TypeScript untuk API BPJS VClaim tanpa dependensi `@ssecd/jkn`.
 
-## Setup
+## Instalasi
 
-1. Install dependencies
-
-```bash
-bun install
-```
-
-2. Buat file `.env` berdasarkan `.env.example`
+Paket ini ditujukan untuk runtime ESM di Node.js 18+ atau Bun.
 
 ```bash
-cp .env.example .env
+npm install bpjs-vclaim
 ```
 
-3. Isi konfigurasi di `.env`
+```bash
+bun add bpjs-vclaim
+```
+
+## Konfigurasi
+
+Siapkan kredensial BPJS VClaim:
 
 ```env
 NODE_ENV=development
@@ -26,42 +26,44 @@ JKN_CONS_SECRET=
 JKN_VCLAIM_USER_KEY=
 ```
 
+Semua nilai di atas bisa diberikan langsung ke constructor, atau dibaca dari environment variable default library.
+
 ## Contoh penggunaan
 
 ```ts
-import { VClaimClient } from './index.js';
+import { VClaimClient } from 'bpjs-vclaim';
 
 const vclaim = new VClaimClient({
   consId: process.env.JKN_CONS_ID ?? '',
   consSecret: process.env.JKN_CONS_SECRET ?? '',
   vclaimUserKey: process.env.JKN_VCLAIM_USER_KEY ?? '',
   ppkCode: process.env.JKN_PPK_CODE ?? '',
-  mode: 'development'
+  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development'
 });
 
-const res = await vclaim.peserta.nomorKartu({
+const result = await vclaim.peserta.nomorKartu({
   nomor: '0001234567890',
   tanggal: '2026-02-05'
 });
 
-console.log(res.metaData, res.response);
+console.log(result.metaData, result.response);
 ```
 
-## API (VClaim Services)
+## Services
 
-Akses semua service lewat instance client:
+Semua service tersedia lewat instance client:
 
 ```ts
 const vclaim = new VClaimClient();
 
-vclaim.lpk
-vclaim.monitoring
-vclaim.peserta
-vclaim.prb
-vclaim.referensi
-vclaim.rencanaKontrol
-vclaim.rujukan
-vclaim.sep
+vclaim.lpk;
+vclaim.monitoring;
+vclaim.peserta;
+vclaim.prb;
+vclaim.referensi;
+vclaim.rencanaKontrol;
+vclaim.rujukan;
+vclaim.sep;
 ```
 
 ### LPK
@@ -174,3 +176,11 @@ vclaim.sep
 - `listFingerPrint({ tanggal })`
 - `listRandomQuestions({ nomorKartu, tanggal })`
 - `sendRandomQuestionAnswers(data)`
+
+## Pengembangan repo
+
+```bash
+bun install
+bun test
+bun run build
+```

@@ -33,7 +33,7 @@ describe('VClaimFetcher', () => {
   it('returns parsed response when skipDecrypt is true', async () => {
     let calledUrl = '';
     globalThis.fetch = (async (input: RequestInfo, init?: RequestInit) => {
-      calledUrl = typeof input === 'string' ? input : input.url;
+      calledUrl = typeof input === 'string' ? input : input instanceof URL ? input.toString() : input.url;
       expect(init?.method).toBe('GET');
       return new Response(
         JSON.stringify({
@@ -63,8 +63,11 @@ describe('VClaimFetcher', () => {
 
   it('throws when cons id/secret are missing', async () => {
     const fetcher = new VClaimFetcher({
+      consId: '',
+      consSecret: '',
       vclaimUserKey: 'userkey',
-      mode: 'development'
+      mode: 'development',
+      throw: true
     });
 
     await expect(

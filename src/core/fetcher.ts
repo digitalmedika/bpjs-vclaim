@@ -97,7 +97,11 @@ export class VClaimFetcher {
 
       const json = JSON.parse(result) as VClaimResponse<T, E>;
       if ((json as VClaimResponse<string, E>).response && !option.skipDecrypt) {
-        const decrypted = this.decrypt(String((json as VClaimResponse<string, E>).response), headers['X-timestamp']);
+        const timestamp = headers['X-timestamp'];
+        if (!timestamp) {
+          throw new Error('Missing X-timestamp header');
+        }
+        const decrypted = this.decrypt(String((json as VClaimResponse<string, E>).response), timestamp);
         (json as VClaimResponse<T, E>).response = JSON.parse(this.decompress(decrypted)) as T;
       }
 
