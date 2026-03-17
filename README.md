@@ -1,17 +1,17 @@
-# bpjs-vclaim
+# @digitalmedika/bpjs-vclaim
 
-Wrapper TypeScript untuk API BPJS VClaim tanpa dependensi `@ssecd/jkn`.
+Wrapper TypeScript untuk API BPJS VClaim.
 
 ## Instalasi
 
 Paket ini ditujukan untuk runtime ESM di Node.js 18+ atau Bun.
 
 ```bash
-npm install bpjs-vclaim
+npm install @digitalmedika/bpjs-vclaim
 ```
 
 ```bash
-bun add bpjs-vclaim
+bun add @digitalmedika/bpjs-vclaim
 ```
 
 ## Konfigurasi
@@ -31,7 +31,7 @@ Semua nilai di atas bisa diberikan langsung ke constructor, atau dibaca dari env
 ## Contoh penggunaan
 
 ```ts
-import { VClaimClient } from 'bpjs-vclaim';
+import { VClaimClient } from '@digitalmedika/bpjs-vclaim';
 
 const vclaim = new VClaimClient({
   consId: process.env.JKN_CONS_ID ?? '',
