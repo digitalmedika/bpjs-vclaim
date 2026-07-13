@@ -35,9 +35,9 @@ vclaim.onError = async (error) => {
 };
 
 const sepPayload = {
-  noKartu: '0002034270641',
+  noKartu: '0002039387275',
   // Tanggal pelayanan SEP. Jangan pakai tanggal masa depan.
-  tglSep: getOptionalEnv('SEP_TGL', '2026-03-16'),
+  tglSep: getOptionalEnv('SEP_TGL', '2026-05-13'),
   ppkPelayanan: env.ppkCode,
   // IGD umumnya rawat jalan.
   jnsPelayanan: '2',
@@ -48,11 +48,11 @@ const sepPayload = {
     pembiayaan: '',
     penanggungJawab: ''
   },
-  noMR: 'MR000001',
+  noMR: '000013',
   rujukan: {
     // asalRujukan wajib diisi '1' (Faskes Tk I) atau '2' (Faskes Tk II/RS), tidak boleh string kosong
     asalRujukan: '2',
-    tglRujukan: getOptionalEnv('SEP_TGL', '2026-03-16'),
+    tglRujukan: '',
     noRujukan: '',
     // ppkRujukan harus diisi kode faskes, jika tidak ada bisa pakai kode faskes sendiri (env.ppkCode) atau 00000000
     ppkRujukan: env.ppkCode
