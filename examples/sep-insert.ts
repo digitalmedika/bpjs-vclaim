@@ -37,7 +37,7 @@ vclaim.onError = async (error) => {
 const sepPayload = {
   noKartu: '0002039387275',
   // Tanggal pelayanan SEP. Jangan pakai tanggal masa depan.
-  tglSep: getOptionalEnv('SEP_TGL', '2026-05-13'),
+  tglSep: getOptionalEnv('SEP_TGL', '2026-05-22'),
   ppkPelayanan: env.ppkCode,
   // IGD umumnya rawat jalan.
   jnsPelayanan: '2',

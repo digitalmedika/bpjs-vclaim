@@ -36,7 +36,7 @@ vclaim.onError = async (error) => {
 
 const pengajuanPayload = {
   noKartu: getOptionalEnv('SEP_NO_KARTU', '0002039387275'),
-  tglSep: getOptionalEnv('SEP_TGL_RENCANA', '2026-05-13'),
+  tglSep: getOptionalEnv('SEP_TGL_RENCANA', '2026-05-22'),
   jnsPelayanan: getOptionalEnv('SEP_JNS_PELAYANAN', '2'), // 1 = Rawat Inap, 2 = Rawat Jalan
   jnsPengajuan: getOptionalEnv('SEP_JNS_PENGAJUAN', '1'), // 1 = Backdate
   keterangan: getOptionalEnv('SEP_KETERANGAN', 'Pengajuan persetujuan SEP backdate'),
